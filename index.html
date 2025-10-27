@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>ID Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e0f2e9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 128, 0, 0.2);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      margin-bottom: 15px;
+      border: 2px solid #c8e6c9;
+      border-radius: 8px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .buttons button {
+      width: 23%;
+      padding: 12px 0;
+      font-size: 18px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #388e3c;
+    }
+
+    .result {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1b5e20;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>ID Calculator</h2>
+
+  <input type="number" id="sayi1" placeholder="İlk sayıyı girin">
+  <input type="number" id="sayi2" placeholder="İkinci sayıyı girin">
+
+  <div class="buttons">
+    <button onclick="hesapla('+')">+</button>
+    <button onclick="hesapla('-')">−</button>
+    <button onclick="hesapla('*')">×</button>
+    <button onclick="hesapla('/')">÷</button>
+  </div>
+
+  <div class="result" id="sonuc"></div>
+</div>
+
+<script>
+  function hesapla(islem) {
+    const sayi1 = parseFloat(document.getElementById('sayi1').value);
+    const sayi2 = parseFloat(document.getElementById('sayi2').value);
+    let sonuc;
+
+    if (isNaN(sayi1) || isNaN(sayi2)) {
+      sonuc = "Lütfen geçerli iki sayı girin.";
+    } else {
+      switch(islem) {
+        case '+':
+          sonuc = sayi1 + sayi2;
+          break;
+        case '-':
+          sonuc = sayi1 - sayi2;
+          break;
+        case '*':
+          sonuc = sayi1 * sayi2;
+          break;
+        case '/':
+          if (sayi2 === 0) {
+            sonuc = "Bir sayı sıfıra bölünemez.";
+          } else {
+            sonuc = sayi1 / sayi2;
+          }
+          break;
+        default:
+          sonuc = "Geçersiz işlem.";
+      }
+    }
+
+    document.getElementById('sonuc').textContent = "Sonuç: " + sonuc;
+  }
+</script>
+
+</body>
+</html>
